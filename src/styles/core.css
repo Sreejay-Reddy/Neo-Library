@@ -1,0 +1,382 @@
+/* -------------------------------------------
+   NeoPOP Global Variables
+------------------------------------------- */
+:root {
+  --surface: #FFF6ED;         /* warm soft cream */
+  --border: #000000;          /* bold outline */
+
+  --accent: #FF6B6B;          /* coral pink */
+  --accent-dark: #C93F3F;
+
+  --accent-alt: #4D96FF;      /* bright blue */
+  --accent-alt-dark: #1E6AE3;
+
+  --success: #06D6A0;         /* mint green */
+  --warning: #FFD166;         /* neo yellow */
+  --danger: #EF476F;          /* raspberry red */
+
+  --shadow: #000000;
+
+  --radius: 6px;
+  --transition: 0.15s ease;
+}
+
+
+/* -------------------------------------------
+   BUTTONS
+------------------------------------------- */
+.neopop-btn {
+  background: var(--surface);
+  border: 3px solid var(--border);
+  padding: 10px 18px;
+  font-weight: 700;
+  cursor: pointer;
+  font-size: 15px;
+  border-radius: var(--radius);
+  box-shadow: 0 4px 0 var(--shadow);
+  transition: transform var(--transition), box-shadow var(--transition), background var(--transition), color var(--transition);
+}
+
+/* Hover = lift */
+.neopop-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 0 var(--shadow);
+}
+
+/* Press = sink */
+.neopop-btn:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 var(--shadow);
+}
+
+/* Variants */
+.neopop-btn.primary {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent-dark);
+}
+
+.neopop-btn.ghost {
+  background: white;
+  color: var(--border);
+}
+
+/* Sizes */
+.neopop-btn.small {
+  padding: 6px 12px;
+  font-size: 13px;
+}
+
+.neopop-btn.big {
+  padding: 14px 26px;
+  font-size: 17px;
+}
+
+.neopop-btn.full {
+  width: 100%;
+}
+
+/* -------------------------------------------
+   CARD
+------------------------------------------- */
+.neopop-card {
+  border: 3px solid var(--border);
+  background: var(--surface);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 6px 0 var(--shadow);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+/* Card hover = lift */
+.neopop-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 0 var(--shadow);
+}
+
+/* -------------------------------------------
+   INPUT TEXT + SIZE VARIANTS
+------------------------------------------- */
+.neopop-input {
+  border: 3px solid var(--border);
+  width: 90%;
+  border-radius: var(--radius);
+  background: var(--surface);
+  transition: var(--transition);
+}
+
+/* Input sizes */
+.neopop-input.small {
+  padding: 4px 8px;
+  font-size: 13px;
+  box-shadow: inset 0 2px 0 var(--shadow);
+}
+
+.neopop-input.normal {
+  padding: 6px 10px;
+  font-size: 14px;
+  box-shadow: inset 0 3px 0 var(--shadow);
+}
+
+.neopop-input.large {
+  padding: 10px 14px;
+  font-size: 16px;
+  box-shadow: inset 0 4px 0 var(--shadow);
+}
+
+/* Focus */
+.neopop-input:focus {
+  outline: none;
+  transform: translateY(-1px);
+}
+
+/* -------------------------------------------
+   SWITCH
+------------------------------------------- */
+.neopop-switch {
+  width: 48px;
+  height: 28px;
+  background: var(--surface);
+  border: 3px solid var(--border);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  padding: 2px;
+  cursor: pointer;
+  box-shadow: 0 4px 0 var(--shadow);
+  transition: var(--transition);
+}
+
+.neopop-switch .knob {
+  width: 20px;
+  height: 20px;
+  background: var(--border);
+  border-radius: 50%;
+  transition: var(--transition);
+}
+
+/* WHEN CHECKED */
+.neopop-switch.checked {
+  background: var(--accent);
+  border-color: var(--accent-dark);
+}
+
+.neopop-switch.checked .knob {
+  transform: translateX(25px);
+  background: white;
+}
+
+/* -------------------------------------------
+   SEGMENTED CONTROL
+------------------------------------------- */
+.neopop-seg {
+  display: flex;
+  gap: 10px;
+}
+
+.neopop-seg button {
+  border: 3px solid var(--border);
+  background: white;
+  padding: 8px 14px;
+  font-weight: 700;
+  cursor: pointer;
+  font-size: 14px;
+  border-radius: var(--radius);
+  box-shadow: 0 4px 0 var(--shadow);
+  transition: var(--transition);
+}
+
+.neopop-seg button.active {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent-dark);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 0 var(--shadow);
+}
+
+/* -------------------------------------------
+   TAB BAR
+------------------------------------------- */
+.neopop-tabbar {
+  display: flex;
+  gap: 20px;
+  padding: 10px 0;
+}
+
+.neopop-tabbar button {
+  background: transparent;
+  border: none;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 5px 8px;
+  position: relative;
+  font-size: 16px;
+}
+
+/* Active indicator bar */
+.neopop-tabbar button.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -5px;
+  height: 5px;
+  background: var(--accent);
+  border-top: 3px solid var(--border);
+}
+
+/* -------------------------------------------
+   TOASTS
+------------------------------------------- */
+.neopop-toast-wrap {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  z-index: 9999;
+}
+
+.neopop-toast {
+  background: var(--surface);
+  border: 3px solid var(--border);
+  padding: 12px 16px;
+  font-weight: 700;
+  border-radius: var(--radius);
+  box-shadow: 0 6px 0 var(--shadow);
+  font-size: 14px;
+}
+
+/* -------------------------------------------
+   PRODUCT CARD (NeoPOP Youth)
+------------------------------------------- */
+
+.neopop-product-card {
+  width: 220px;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  background: var(--surface);
+  border: 3px solid var(--border);
+  box-shadow: 0 6px 0 var(--shadow);
+  transition: transform 0.2s, box-shadow 0.2s;
+  animation: cardPop 0.3s cubic-bezier(.25,1.3,.5,1);
+}
+
+@keyframes cardPop {
+  0% { transform: scale(0.9) translateY(10px); opacity: 0; }
+  100% { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+.neopop-product-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 10px 0 var(--shadow);
+}
+
+.product-img-wrap {
+  width: 100%;
+  height: 260px;  /* fixed size like your store */
+  overflow: hidden;
+  background: #f7f7f7;
+}
+
+/* THE IMPORTANT PART */
+.product-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;       /* fills card perfectly */
+  object-position: center; /* keeps product centered */
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.neopop-product-card:hover .product-img {
+  transform: scale(1.06); /* subtle zoom on hover */
+}
+
+.product-info {
+  padding: 12px;
+}
+
+.product-price {
+  font-weight: bold;
+  margin-top: 4px;
+  color: var(--accent-dark);
+}
+
+/*=========ANIMATIONS=========*/
+
+/* POP bounce when appearing */
+.neopop-btn {
+  animation: popIn 0.25s cubic-bezier(.25, 1.35, .5, 1);
+}
+
+@keyframes popIn {
+  0% { transform: scale(0.8) translateY(6px); opacity: 0; }
+  100% { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+/* Press ripple */
+.neopop-btn:active {
+  animation: pressDown 0.1s ease-out forwards;
+}
+
+@keyframes pressDown {
+  0% { transform: translateY(0) scale(1); }
+  100% { transform: translateY(2px) scale(0.97); }
+}
+
+.neopop-card {
+  animation: floatIn 0.35s ease-out;
+}
+
+@keyframes floatIn {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.neopop-card:hover {
+  transform: translateY(-6px) scale(1.02);
+}
+
+.neopop-input:focus {
+  animation: inputPulse 0.25s ease-out;
+}
+
+@keyframes inputPulse {
+  0% { box-shadow: inset 0 0 0 var(--shadow); }
+  100% { box-shadow: inset 0 4px 0 var(--shadow); }
+}
+
+.neopop-switch .knob {
+  transition: transform 0.2s cubic-bezier(.3, .7, .4, 1.4);
+}
+
+.neopop-seg button.active {
+  animation: segBounce 0.25s cubic-bezier(.25, 1.4, .5, 1.1);
+}
+
+@keyframes segBounce {
+  0% { transform: scale(0.85) translateY(2px); }
+  100% { transform: scale(1) translateY(-3px); }
+}
+
+.neopop-tabbar button.active::after {
+  animation: tabSlide 0.25s ease-out;
+}
+
+@keyframes tabSlide {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+.neopop-toast {
+  animation: toastIn 0.3s cubic-bezier(.25,1.2,.5,1);
+}
+
+@keyframes toastIn {
+  0% { opacity: 0; transform: translateX(20px) translateY(-10px); }
+  100% { opacity: 1; transform: translateX(0) translateY(0); }
+}
+
