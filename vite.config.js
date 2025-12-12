@@ -5,22 +5,15 @@ import path from "path";
 export default defineConfig({
   plugins: [react()],
 
-  server: {
-    open: "/demo/index.html",   // auto-open demo
-    port: 5174
-  },
-
-  // Vite must serve project root so /demo works
-  root: ".",
-
   build: {
     lib: {
       entry: path.resolve(__dirname, "src/index.js"),
-      name: "NeopopUI",
-      fileName: (format) => `neopop-ui.${format}.js`,
+      name: "NeoLibrary",
+      fileName: (format) => `neo-library.${format}.js`,
       formats: ["es", "cjs"]
     },
     rollupOptions: {
+      // React should NOT be bundled inside your library
       external: ["react", "react-dom"],
       output: {
         globals: {
