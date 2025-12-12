@@ -1,5 +1,5 @@
 {
-  "name": "neopop-ui",
+  "name": "neo-library",
   "version": "1.0.0",
   "description": "A custom NeoPOP-style React UI library",
   "author": "Your Name",
@@ -7,12 +7,12 @@
 
   "type": "module",
 
-  "main": "./dist/neopop-ui.cjs.js",
-  "module": "./dist/neopop-ui.es.js",
+  "main": "./dist/neo-library.cjs.js",
+  "module": "./dist/neo-library.es.js",
   "exports": {
     ".": {
-      "import": "./dist/neopop-ui.es.js",
-      "require": "./dist/neopop-ui.cjs.js"
+      "import": "./dist/neo-library.es.js",
+      "require": "./dist/neo-library.cjs.js"
     }
   },
 
