@@ -1,12 +1,10 @@
 {
   "name": "neo-library",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A custom NeoPOP-style React UI library",
   "author": "Sreejay Reddy",
   "license": "MIT",
-
   "type": "module",
-
   "main": "./dist/neo-library.cjs.js",
   "module": "./dist/neo-library.es.js",
   "exports": {
@@ -15,26 +13,21 @@
       "require": "./dist/neo-library.cjs.js"
     }
   },
-
   "files": [
     "dist",
     "src"
   ],
-
   "scripts": {
     "dev": "vite",
     "build": "vite build"
   },
-
   "peerDependencies": {
     "react": ">=17",
     "react-dom": ">=17"
   },
-
   "dependencies": {
     "clsx": "^2.1.1"
   },
-
   "devDependencies": {
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
