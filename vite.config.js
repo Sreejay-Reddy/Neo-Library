@@ -13,7 +13,6 @@ export default defineConfig({
       formats: ["es", "cjs"]
     },
     rollupOptions: {
-      // React should NOT be bundled inside your library
       external: ["react", "react-dom"],
       output: {
         globals: {

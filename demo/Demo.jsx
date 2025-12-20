@@ -1,122 +1,139 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Button,
   Card,
   InputText,
   Switch,
+  ProductCard,
   SegmentedControl,
   TabBar,
-  ProductCard,
-  useToast
+  LoadingScreen,
+  MovingBanner,
+  ImageBanner,
+  useToast,
+  ToastProvider
 } from "../src/index.js";
 
 export default function Demo() {
+  const [dark, setDark] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [segment, setSegment] = useState("one");
+  const [tab, setTab] = useState("home");
+
+  // Fake loading screen
+  useEffect(() => {
+    const t = setTimeout(() => setLoading(false), 2000);
+    return () => clearTimeout(t);
+  }, []);
+
   const { addToast } = useToast();
 
-  const [segValue, setSegValue] = useState("opt1");
-  const [switchOn, setSwitchOn] = useState(false);
-  const [tabValue, setTabValue] = useState("home");
+  // Theme toggle (class-based)
+  useEffect(() => {
+    const root = document.documentElement;
+    dark ? root.classList.add("dark") : root.classList.remove("dark");
+  }, [dark]);
 
-  const [inputValue, setInputValue] = useState("");
+  if (loading) {
+    return <LoadingScreen text="Neo Library" />;
+  }
 
   return (
-    <div style={{ padding: "40px", maxWidth: "900px", margin: "auto" }}>
-      <h1 style={{ marginBottom: "40px", fontWeight: "900" }}>
-        NeoPOP UI Demo
+    <div style={{ padding: 40, maxWidth: 900, margin: "auto" }}>
+      <h1 style={{ fontWeight: 900, marginBottom: 24 }}>
+        Neo Library Demo
       </h1>
 
-      {/* ------------------ PRODUCT CARD ------------------ */}
-      <Card style={{ marginBottom: "30px" }}>
-        <h2>Product Card</h2>
+      <Button onClick={() => addToast("Toast works!")}>
+        Test Toast
+      </Button>
 
-        <ProductCard
-          image="https://images.unsplash.com/photo-1616072582135-6ff4591d7d7a?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-          title="Vintage Jacket"
-          price="2499"
-          onClick={() => addToast("Clicked Product!", 2000)}
-        />
 
-        <p style={{ marginTop: "12px" }}>
-          This is a standard product card with an image.
-        </p>
+      <ImageBanner
+        image="https://images.unsplash.com/photo-1765651998297-c5f862ac0a53?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        title="Vintage Drop"
+        subtitle="One-of-one thrift pieces"
+        cta="Shop Now"
+        onClick={() => addToast("Added to cart")}
+      />
+
+      {/* THEME TOGGLE */}
+      <Card style={{ marginBottom: 32 }}>
+        <h2>Theme</h2>
+        <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+          <Switch checked={dark} onChange={setDark} />
+          <span>{dark ? "Dark Mode" : "Light Mode"}</span>
+        </div>
       </Card>
 
-      {/* ------------------ BUTTONS ------------------ */}
-      <Card style={{ marginBottom: "30px" }}>
+      <MovingBanner
+        text="♻️ Thrift responsibly • New vintage drop this Sunday • Free shipping over ₹999"
+        onClick={() => alert("Banner clicked!")}
+      />
+
+
+      {/* BUTTONS */}
+      <Card style={{ marginBottom: 32 }}>
         <h2>Buttons</h2>
-        <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
-          <Button>Primary</Button>
-          <Button variant="ghost">Ghost</Button>
+        <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
+          <Button>Default</Button>
           <Button size="small">Small</Button>
           <Button size="big">Big</Button>
           <Button fullWidth>Full Width</Button>
         </div>
       </Card>
 
-      {/* ------------------ INPUT ------------------ */}
-      <Card style={{ marginBottom: "30px" }}>
+      {/* INPUT */}
+      <Card style={{ marginBottom: 32 }}>
         <h2>Input</h2>
-
-        <InputText
-          placeholder="Type something..."
-          size="normal"
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
-        />
-
-        <p style={{ marginTop: "10px" }}>Value: {inputValue}</p>
+        <InputText placeholder="Type something..." />
       </Card>
 
-      {/* ------------------ SWITCH ------------------ */}
-      <Card style={{ marginBottom: "30px" }}>
+      {/* SWITCH */}
+      <Card style={{ marginBottom: 32 }}>
         <h2>Switch</h2>
-
-        <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-          <Switch checked={switchOn} onChange={setSwitchOn} />
-          <span>{switchOn ? "ON" : "OFF"}</span>
-        </div>
+        <Switch checked={dark} onChange={setDark} />
       </Card>
 
-      {/* ------------------ SEGMENTED ------------------ */}
-      <Card style={{ marginBottom: "30px" }}>
+      {/* SEGMENTED CONTROL */}
+      <Card style={{ marginBottom: 32 }}>
         <h2>Segmented Control</h2>
-
         <SegmentedControl
-          value={segValue}
-          onChange={setSegValue}
+          value={segment}
+          onChange={setSegment}
           options={[
-            { label: "Option 1", value: "opt1" },
-            { label: "Option 2", value: "opt2" },
-            { label: "Option 3", value: "opt3" },
+            { label: "Option One", value: "one" },
+            { label: "Option Two", value: "two" },
+            { label: "Option Three", value: "three" }
           ]}
         />
-
-        <p style={{ marginTop: "10px" }}>Selected: {segValue}</p>
+        <p style={{ marginTop: 8 }}>Selected: {segment}</p>
       </Card>
 
-      {/* ------------------ TAB BAR ------------------ */}
-      <Card style={{ marginBottom: "30px" }}>
+      {/* TAB BAR */}
+      <Card style={{ marginBottom: 32 }}>
         <h2>Tab Bar</h2>
-
         <TabBar
+          active={tab}
+          onChange={setTab}
           tabs={[
             { key: "home", label: "Home" },
             { key: "explore", label: "Explore" },
-            { key: "profile", label: "Profile" },
+            { key: "profile", label: "Profile" }
           ]}
-          active={tabValue}
-          onChange={setTabValue}
         />
-
-        <p style={{ marginTop: "10px" }}>Active tab: {tabValue}</p>
+        <p style={{ marginTop: 8 }}>Active tab: {tab}</p>
       </Card>
 
-      {/* ------------------ TOAST ------------------ */}
+      {/* PRODUCT CARD */}
       <Card>
-        <h2>Toast</h2>
-        <Button onClick={() => addToast("This is a NeoPOP Toast!", 2500)}>
-          Show Toast
-        </Button>
+        <h2>Product Card</h2>
+        <ProductCard
+          title="Vintage Jacket"
+          price="2499"
+          description="Good condition. Rare piece."
+          image="https://images.unsplash.com/photo-1765651998297-c5f862ac0a53?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        />
       </Card>
     </div>
   );
