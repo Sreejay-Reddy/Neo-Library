@@ -11,4 +11,6 @@ export * from "./components/ProductCard";
 export * from "./components/LoadingScreen";
 export * from "./components/ThemeSwitcher";
 export * from "./components/MovingBanner";
-export * from "./components/ImageBanner"
+export * from "./components/ImageBanner";
+export * from "./components/Carousel";
+export * from "./components/ImageCarousel"

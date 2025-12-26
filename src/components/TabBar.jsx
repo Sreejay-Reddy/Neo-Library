@@ -1,13 +1,31 @@
 import React from "react";
 import "../styles/core.css";
+import clsx from "clsx";
 
-export function TabBar({ tabs, active, onChange }) {
+export function TabBar({
+  tabs,
+  active,
+  onChange,
+
+  // 🔓 styling hooks
+  className = "",
+  style,
+  tabClassName = "",
+  activeTabClassName = ""
+}) {
   return (
-    <div className="neopop-tabbar">
-      {tabs.map(tab => (
+    <div
+      className={clsx("neopop-tabbar", className)}
+      style={style}
+    >
+      {tabs.map((tab) => (
         <button
           key={tab.key}
-          className={active === tab.key ? "active" : ""}
+          className={clsx(
+            active === tab.key && "active",
+            tabClassName,
+            active === tab.key && activeTabClassName
+          )}
           onClick={() => onChange(tab.key)}
         >
           {tab.label}

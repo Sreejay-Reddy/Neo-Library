@@ -1,9 +1,17 @@
 import React, { useRef, useEffect } from "react";
+import "../styles/core.css";
+import clsx from "clsx";
 
 export function MovingBanner({
   text = "Free shipping on orders over ₹999 • Vintage drops every Friday",
   speed = 30, // lower = faster
-  onClick
+  onClick,
+
+  // 🔓 styling hooks
+  className = "",
+  style,
+  trackClassName = "",
+  trackStyle
 }) {
   const bannerRef = useRef(null);
 
@@ -32,11 +40,18 @@ export function MovingBanner({
   }, []);
 
   return (
-    <div className="neopop-banner" onClick={onClick}>
+    <div
+      className={clsx("neopop-banner", className)}
+      style={style}
+      onClick={onClick}
+    >
       <div
         ref={bannerRef}
-        className="neopop-banner-track"
-        style={{ animationDuration: `${speed}s` }}
+        className={clsx("neopop-banner-track", trackClassName)}
+        style={{
+          animationDuration: `${speed}s`,
+          ...trackStyle
+        }}
       >
         <span>{text}</span>
         <span>{text}</span>

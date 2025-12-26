@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 
-const THEMES = [
+const DEFAULT_THEMES = [
   "theme-olive-wine",
   "theme-olive-wine-warm",
   "theme-olive-wine-bold"
@@ -9,19 +9,23 @@ const THEMES = [
 export function ThemeProvider({
   children,
   theme = "theme-olive-wine",
-  dark = false
+  dark = false,
+
+  // 🔓 extensibility hooks
+  themes = DEFAULT_THEMES,
+  target = document.documentElement
 }) {
   useEffect(() => {
-    const root = document.documentElement;
+    if (!target) return;
 
     // Remove all known theme classes
-    THEMES.forEach(t => root.classList.remove(t));
-    root.classList.remove("dark");
+    themes.forEach(t => target.classList.remove(t));
+    target.classList.remove("dark");
 
     // Apply new theme
-    if (dark) root.classList.add("dark");
-    root.classList.add(theme);
-  }, [theme, dark]);
+    if (dark) target.classList.add("dark");
+    if (theme) target.classList.add(theme);
+  }, [theme, dark, themes, target]);
 
   return children;
 }

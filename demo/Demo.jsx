@@ -11,7 +11,8 @@ import {
   MovingBanner,
   ImageBanner,
   useToast,
-  ToastProvider
+  Carousel,
+  ImageCarousel
 } from "../src/index.js";
 
 export default function Demo() {
@@ -124,6 +125,41 @@ export default function Demo() {
         />
         <p style={{ marginTop: 8 }}>Active tab: {tab}</p>
       </Card>
+
+      {/* CAROUSEL */}
+      <Carousel>
+        <ProductCard/>
+        <ProductCard/>
+        <ProductCard/>
+        <ProductCard/>
+      </Carousel>
+
+      {/* IMAGE CAROUSEL */}
+      <ImageCarousel
+        interval={6000}
+        items={[
+          {
+            image: "https://images.unsplash.com/photo-1766133238998-b6813eaea76f?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            title: "Winter Drop",
+            subtitle: "Vintage jackets just landed",
+            cta: "Explore"
+          },
+          {
+            image: "https://images.unsplash.com/photo-1765651998297-c5f862ac0a53?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            title: "Street Archive",
+            subtitle: "90s silhouettes",
+            cta: "Shop Now"
+          },
+          {
+            image: "https://images.unsplash.com/photo-1766546407207-4b2a236edda6?q=80&w=685&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            title: "Rare Finds",
+            subtitle: "One-of-one pieces",
+            cta: "View"
+          }
+        ]}
+      />
+
+
 
       {/* PRODUCT CARD */}
       <Card>

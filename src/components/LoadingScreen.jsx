@@ -1,12 +1,34 @@
 import React from "react";
 import "../styles/core.css";
+import clsx from "clsx";
 
-export function LoadingScreen({ text = "Loading" }) {
+export function LoadingScreen({
+  text = "Loading",
+
+  // 🔓 styling hooks
+  className = "",
+  style,
+
+  // optional inner overrides
+  boxClassName = "",
+  boxStyle,
+  textClassName = "",
+  dotsClassName = ""
+}) {
   return (
-    <div className="neopop-loading">
-      <div className="loading-box">
-        <span className="loading-text">{text}</span>
-        <span className="loading-dots">
+    <div
+      className={clsx("neopop-loading", className)}
+      style={style}
+    >
+      <div
+        className={clsx("loading-box", boxClassName)}
+        style={boxStyle}
+      >
+        <span className={clsx("loading-text", textClassName)}>
+          {text}
+        </span>
+
+        <span className={clsx("loading-dots", dotsClassName)}>
           <i></i><i></i><i></i>
         </span>
       </div>

@@ -30,7 +30,42 @@ npm install neo-library
 
 ---
 
-## Components 
+## Styling & Customization
+
+- Neo Library is fully editable via CSS variables.
+
+-- How it works
+- Components consume design tokens
+- Override styles:
+- globally (:root)
+- per theme
+- per section
+- per component (style / className)
+
+-- example (globally):
+#  :root {
+#   --accent: #7b2cbf;
+#   --depth-lg: 12px;
+#  }
+
+--example (Per Component)
+# <Button style={{ "--accent": "#ff006e" }}>
+#   Buy Now
+# </Button>
+
+-- Do's and Dont's
+
+# Do
+- Override CSS variables
+- Use className for layout
+
+# Don’t
+- Remove shadows
+- Override transforms
+
+- NeoPOP relies on physical depth & motion.
+
+## Components
 
 1. ThemeProvider
 - Must be wrapped around your app to provide theme
@@ -186,13 +221,41 @@ npm install neo-library
   ]}
  />
 
+----------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------
+
+13. Carousel
+-- Ensure component inside has exact css dimensions
+  <Carousel>
+    <ProductCard />
+    <ProductCard />
+  </Carousel>
+
+----------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------
+
+14. ImageCarousel
+-- ImageCarousel, Interval in miliseconds
+  <ImageCarousel
+    interval={6000}
+    items={[
+      {
+        image: "/img/drop1.jpg",
+        title: "Winter Drop",
+        subtitle: "Vintage jackets",
+        cta: "Explore"
+      }
+    ]}
+  />
+
+
 **--------------------------------------------------------------------------------------**
 
 ## 🗺 Roadmap ##
 
 - Modal / Drawer components
 - Skeleton loaders
-- Carousel & banner groups
+- Advanced carousel controls
 - Theme persistence
 - Accessibility improvements
 - Docs website

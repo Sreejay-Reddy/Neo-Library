@@ -7,6 +7,8 @@ export function Button({
   variant = "primary",
   size = "normal",
   fullWidth = false,
+  className = "",
+  style,
   ...rest
 }) {
   return (
@@ -15,8 +17,10 @@ export function Button({
         "neopop-btn",
         variant,
         size,
-        fullWidth && "full"
+        fullWidth && "full",
+        className
       )}
+      style={style}
       {...rest}
     >
       {children}
