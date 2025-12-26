@@ -1,6 +1,6 @@
 {
   "name": "neo-library",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "A custom NeoPOP-style React UI library",
   "author": "Sreejay Reddy",
   "license": "MIT",
