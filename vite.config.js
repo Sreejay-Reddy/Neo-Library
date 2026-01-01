@@ -4,7 +4,7 @@ import path from "path";
 
 export default defineConfig(({ mode }) => {
   // -------------------------
-  // DEMO MODE (for Vercel / preview)
+  // DEMO MODE
   // -------------------------
   if (mode === "demo") {
     return {
@@ -18,15 +18,12 @@ export default defineConfig(({ mode }) => {
   }
 
   // -------------------------
-  // LIBRARY MODE (npm package)
+  // LIBRARY MODE (npm)
   // -------------------------
   return {
     plugins: [react()],
     build: {
       outDir: "dist",
-
-      // 🔑 IMPORTANT: bundle CSS into JS
-      cssCodeSplit: false,
 
       lib: {
         entry: path.resolve(__dirname, "src/index.js"),
@@ -39,13 +36,7 @@ export default defineConfig(({ mode }) => {
       },
 
       rollupOptions: {
-        external: ["react", "react-dom"],
-        output: {
-          globals: {
-            react: "React",
-            "react-dom": "ReactDOM"
-          }
-        }
+        external: ["react", "react-dom"]
       }
     }
   };
