@@ -13,4 +13,6 @@ export * from "./components/ThemeSwitcher";
 export * from "./components/MovingBanner";
 export * from "./components/ImageBanner";
 export * from "./components/Carousel";
-export * from "./components/ImageCarousel"
+export * from "./components/ImageCarousel";
+
+

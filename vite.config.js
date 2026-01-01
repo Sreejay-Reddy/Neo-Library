@@ -4,30 +4,34 @@ import path from "path";
 
 export default defineConfig(({ mode }) => {
   // -------------------------
-  // DEMO MODE (Vercel)
+  // DEMO MODE
   // -------------------------
   if (mode === "demo") {
     return {
       root: "demo",
       plugins: [react()],
       build: {
-        outDir: "../dist",
+        outDir: "../demo-dist",
         emptyOutDir: true
       }
     };
   }
 
   // -------------------------
-  // LIBRARY MODE (npm)
+  // LIBRARY MODE
   // -------------------------
   return {
     plugins: [react()],
     build: {
+      outDir: "dist",
       lib: {
         entry: path.resolve(__dirname, "src/index.js"),
         name: "NeoLibrary",
-        fileName: (format) => `neo-library.${format}.js`,
-        formats: ["es", "cjs"]
+        formats: ["es", "cjs"],
+        fileName: (format) =>
+          format === "es"
+            ? "neo-library.es.js"
+            : "neo-library.cjs.js"
       },
       rollupOptions: {
         external: ["react", "react-dom"],
