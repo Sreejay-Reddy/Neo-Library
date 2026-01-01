@@ -4,7 +4,7 @@ import path from "path";
 
 export default defineConfig(({ mode }) => {
   // -------------------------
-  // DEMO MODE
+  // DEMO MODE (for Vercel / preview)
   // -------------------------
   if (mode === "demo") {
     return {
@@ -18,12 +18,16 @@ export default defineConfig(({ mode }) => {
   }
 
   // -------------------------
-  // LIBRARY MODE
+  // LIBRARY MODE (npm package)
   // -------------------------
   return {
     plugins: [react()],
     build: {
       outDir: "dist",
+
+      // 🔑 IMPORTANT: bundle CSS into JS
+      cssCodeSplit: false,
+
       lib: {
         entry: path.resolve(__dirname, "src/index.js"),
         name: "NeoLibrary",
@@ -33,6 +37,7 @@ export default defineConfig(({ mode }) => {
             ? "neo-library.es.js"
             : "neo-library.cjs.js"
       },
+
       rollupOptions: {
         external: ["react", "react-dom"],
         output: {
