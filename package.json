@@ -1,16 +1,13 @@
 {
   "name": "neo-library",
-  "version": "1.1.6",
+  "version": "1.1.7",
   "description": "NeoPOP-style React UI component library",
   "author": "Sreejay Reddy",
   "license": "MIT",
-
   "type": "module",
-
   "main": "./dist/neo-library.cjs.js",
   "module": "./dist/neo-library.es.js",
   "types": "./dist/index.d.ts",
-
   "exports": {
     ".": {
       "import": "./dist/neo-library.es.js",
@@ -19,29 +16,23 @@
     },
     "./styles.css": "./dist/neo-library.css"
   },
-
   "files": [
     "dist"
   ],
-
   "sideEffects": [
     "*.css"
   ],
-
   "scripts": {
     "dev": "vite",
     "build": "vite build"
   },
-
   "peerDependencies": {
     "react": ">=17",
     "react-dom": ">=17"
   },
-
   "dependencies": {
     "clsx": "^2.1.1"
   },
-
   "devDependencies": {
     "@vitejs/plugin-react": "^5.1.2",
     "vite": "^7.2.7",
