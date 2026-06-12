@@ -1,259 +1,118 @@
-# 🧱 Neo Library
+# Neo Library
 
-Neo Library is a **NeoPOP-inspired React UI component library** designed for  
-**fashion, thrift, fintech, and youth-centric web applications**.
+**Live Demo:** https://neo-library-mu.vercel.app
 
-It focuses on:
-- Class-based theming
-- Physical depth (NeoPOP feel)
-- Minimal but expressive components
-- Real-world usability (not demo-only UI)
+A NeoPOP-inspired React UI component library built for fashion, thrift, fintech, and youth-centric web applications.
+
+Neo Library is built around physical depth, class-based theming, and real-world usability — not demo-only components. It powers Ziftyco, a production e-commerce platform.
 
 ---
 
-## ✨ Features
-
-- 🎨 Class-based theme system (no CSS-in-JS)
-- 🌗 Light & dark modes
-- 🧩 Unopinionated layout (you control grids & spacing)
-- 📱 Responsive by default
-- 🔔 Built-in toast system
-- 🖼 Interactive banners
-- 🛍 E-commerce ready components
-
----
-
-## 📦 Installation
+## Install
 
 ```bash
 npm install neo-library
+```
 
 ---
 
-## Styling & Customization
+## Quick Start
 
-- Neo Library is fully editable via CSS variables.
+```jsx
+import { ThemeProvider, ToastProvider } from "neo-library";
 
--- How it works
-- Components consume design tokens
-- Override styles:
-- globally (:root)
-- per theme
-- per section
-- per component (style / className)
+function App() {
+  return (
+    <ThemeProvider theme="theme-olive-wine" dark={false}>
+      <ToastProvider>
+        <YourApp />
+      </ToastProvider>
+    </ThemeProvider>
+  );
+}
+```
 
--- example (globally):
-#  :root {
-#   --accent: #7b2cbf;
-#   --depth-lg: 12px;
-#  }
-
---example (Per Component)
-# <Button style={{ "--accent": "#ff006e" }}>
-#   Buy Now
-# </Button>
-
--- Do's and Dont's
-
-# Do
-- Override CSS variables
-- Use className for layout
-
-# Don’t
-- Remove shadows
-- Override transforms
-
-- NeoPOP relies on physical depth & motion.
+---
 
 ## Components
 
-1. ThemeProvider
-- Must be wrapped around your app to provide theme
+| Component          | Description                                      |
+|--------------------|--------------------------------------------------|
+| `ThemeProvider`    | Wraps your app, provides theme and dark mode     |
+| `ToastProvider`    | Wraps your app, provides toast system            |
+| `Button`           | NeoPOP-depth button with size variants           |
+| `Card`             | Layout container with physical depth             |
+| `ProductCard`      | E-commerce ready product display                 |
+| `ImageBanner`      | Hero / promotional banner with CTA               |
+| `ImageCarousel`    | Auto-advancing image carousel                    |
+| `Carousel`         | Generic component carousel                       |
+| `MovingBanner`     | Scrolling announcement banner                    |
+| `InputText`        | Styled text input                                |
+| `Switch`           | Binary toggle                                    |
+| `SegmentedControl` | Multi-option selector                            |
+| `TabBar`           | Tab-based navigation                             |
+| `LoadingScreen`    | Full-screen loading overlay                      |
 
-- <ThemeProvider theme="theme-olive-wine" dark={false} >
-- <App />
-- </ThemeProvider >
+---
 
-- Themes include   "theme-olive-wine",
--                  "theme-olive-wine-warm",
--                  "theme-olive-wine-bold"
+## Theming
 
-- When dark is set to "False" it's light mode and when set to "True" its dark mode
+Neo Library uses class-based theming — no CSS-in-JS. Override with CSS variables globally or per component.
 
-----------------------------------------------------------------------------------------
-----------------------------------------------------------------------------------------
+```jsx
+// Available themes
+"theme-olive-wine"
+"theme-olive-wine-warm"
+"theme-olive-wine-bold"
 
-2. ToastProvider
-- Must be wrapped around your app to provide toast
-- import { ToastProvider } from "neo-library";
+// Global override
+:root {
+  --accent: #7b2cbf;
+  --depth-lg: 12px;
+}
 
-    <ToastProvider>
-        <App />
-    </ToastProvider>
+// Per component
+<Button style={{ "--accent": "#ff006e" }}>Buy Now</Button>
+```
 
-- import { useToast } from "neo-library";
+---
 
+## Example Usage
+
+```jsx
+import { Button, ProductCard, useToast } from "neo-library";
+
+function StorePage() {
   const { addToast } = useToast();
 
-   onClick={() => addToast("Added to cart")}
--- internally UseToast() has to be set to addToast().
+  return (
+    <ProductCard
+      title="Vintage Jacket"
+      price="2499"
+      description="Good condition. Rare piece."
+      image="/jacket.jpg"
+    />
+    <Button onClick={() => addToast("Added to cart")}>
+      Add to Cart
+    </Button>
+  );
+}
+```
 
-----------------------------------------------------------------------------------------
-----------------------------------------------------------------------------------------
+---
 
-3. Button
---import { Button } from "neo-library";
+## Design Principles
 
- <Button>Default</Button>
- <Button size="small">Small</Button>
- <Button size="big">Big</Button>
- <Button fullWidth>Full Width</Button>
+- **Class-based theming** — no CSS-in-JS overhead
+- **Physical depth** — NeoPOP shadows and transforms are intentional, don't remove them
+- **Unopinionated layout** — you control grids and spacing
+- **Lightweight** — minimal animation by design
 
-----------------------------------------------------------------------------------------
-----------------------------------------------------------------------------------------
+---
 
-4. Imagebanner
- -- Image-based hero / promotional banner.
- --import { ImageBanner } from "neo-library";
+## Roadmap
 
- <ImageBanner
-    image="https://images.unsplash.com/photo-1521335629791-ce4aec67dd53"
-    title="Vintage Drop"
-    subtitle="One-of-one thrift pieces"
-    cta="Shop Now"
-    onClick={() => console.log("Banner clicked")}
- />
-
-----------------------------------------------------------------------------------------
-----------------------------------------------------------------------------------------
-
-5. Card
--- Layout container with NeoPOP depth.
--- import { Card } from "neo-library";
-
- <Card>
-   <h2>Title</h2>
-   <p>Content</p>
- </Card>
-
-----------------------------------------------------------------------------------------
-----------------------------------------------------------------------------------------
-
-6. InputText
--- Styled text input.
--- import { InputText } from "neo-library";
-
- <InputText placeholder="Type something..." />
-
-----------------------------------------------------------------------------------------
-----------------------------------------------------------------------------------------
-
-7. LoadingScreen
--- Full-screen loading overlay.
---import { LoadingScreen } from "neo-library";
-
-<LoadingScreen text="Loading..." />
-
-----------------------------------------------------------------------------------------
-----------------------------------------------------------------------------------------
-
-8. MovingBanner
--- Scrolling, interactive text banner (announcements).
--- import { MovingBanner } from "neo-library";
-
- <MovingBanner
-  text="Free shipping over ₹999 • Vintage drop Sunday"
-  onClick={() => console.log("Clicked")}
- />
-
-----------------------------------------------------------------------------------------
-----------------------------------------------------------------------------------------
-
-9. ProductCard
- -- E-commerce ready product display card.
- -- import { ProductCard } from "neo-library";
-
- <ProductCard
-  title="Vintage Jacket"
-  price="2499"
-  description="Good condition. Rare piece."
-  image="https://images.unsplash.com/photo-1528701800489-20be3c1ea1b2"
- />
-
-----------------------------------------------------------------------------------------
-----------------------------------------------------------------------------------------
-
-10. Switch
--- Binary toggle (on / off).
--- import { Switch } from "neo-library";
-
- <Switch checked={value} onChange={setValue} />
-
-----------------------------------------------------------------------------------------
-----------------------------------------------------------------------------------------
-
-11. SegmentedControl
--- Segmented selection control.
--- import { SegmentedControl } from "neo-library";
-
- <SegmentedControl
-  value={value}
-  onChange={setValue}
-  options={[
-    { label: "One", value: "one" },
-    { label: "Two", value: "two" }
-  ]}
- />
-
-----------------------------------------------------------------------------------------
-----------------------------------------------------------------------------------------
-
-12. TabBar
--- Tab-based navigation component.
--- import { TabBar } from "neo-library";
-
- <TabBar
-  active={tab}
-  onChange={setTab}
-  tabs={[
-    { key: "home", label: "Home" },
-    { key: "profile", label: "Profile" }
-  ]}
- />
-
-----------------------------------------------------------------------------------------
-----------------------------------------------------------------------------------------
-
-13. Carousel
--- Ensure component inside has exact css dimensions
-  <Carousel>
-    <ProductCard />
-    <ProductCard />
-  </Carousel>
-
-----------------------------------------------------------------------------------------
-----------------------------------------------------------------------------------------
-
-14. ImageCarousel
--- ImageCarousel, Interval in miliseconds
-  <ImageCarousel
-    interval={6000}
-    items={[
-      {
-        image: "/img/drop1.jpg",
-        title: "Winter Drop",
-        subtitle: "Vintage jackets",
-        cta: "Explore"
-      }
-    ]}
-  />
-
-
-**--------------------------------------------------------------------------------------**
-
-## 🗺 Roadmap ##
-
-- Modal / Drawer components
+- Modal and Drawer components
 - Skeleton loaders
 - Advanced carousel controls
 - Theme persistence
@@ -262,26 +121,15 @@ npm install neo-library
 
 ---
 
-## 🌍 Browser & Framework Support ##
+## Browser & Framework Support
 
 - React 17+
-- Works with Vite, CRA, and Next.js
+- Vite, CRA, and Next.js
 - SSR-safe (class-based theming)
 
 ---
 
-## ⚠️ Known Limitations ##
-
-- No CSS-in-JS (intentional)
-- No enforced layout system
-- Minimal animation by design
-
-- These trade-offs are intentional to keep the library lightweight.
----
-
-## 📄 License ##
+## License
 
 MIT © Sreejay Reddy
-
-
 
